@@ -20,6 +20,12 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('bfy', ()=>{
+  return gulp.src('app/scripts/*.js') // for inpage, extension stuff
+  .pipe($.browserify())
+  .pipe(gulp.dest('dist/scripts'))
+});
+
 function lint(files, options) {
   return () => {
     return gulp.src(files)
@@ -132,7 +138,7 @@ gulp.task('package', function () {
 gulp.task('build', (cb) => {
   runSequence(
     'lint', 'babel', 'chromeManifest',
-    ['html', 'images', 'extras'],
+    ['html', 'images', 'extras', 'bfy'],
     'size', cb);
 });
 
