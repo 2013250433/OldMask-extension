@@ -1,8 +1,8 @@
-const web3 = require('web3/lib/web3/httpprovider.js')
+const web3 = require('web3')
 const OldmaskProvider = require('./oldmask-provider.js')
 
 var provider = new OldmaskProvider(forwardPayload, 'https://localhost:8545')
-//web3.setProvider(provider)
+web3.setProvider(provider)
 
 console.log('injecting web3!')
 window.web3 = web3
